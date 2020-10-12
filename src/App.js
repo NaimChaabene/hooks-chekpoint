@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import AddMovie from './components/AddMovie'
+import Filter from "./components/Filter"
+import SearchBar from './components/SearchBar';
 
-function App() {
+
+
+
+function App({Data}) {
+const [Movies,setMovies]=useState(Data)
+// searching by title of the movie
+const [input, setInput] = useState("");
+// searching byRate of the movie
+const [inputRate,setInputRate]=useState(2);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="container">
+  
+     <div className='addSearch'>
+       <AddMovie setMovies={setMovies} movies={Movies}/>
+       <SearchBar setInput={setInput} setInputRate= {setInputRate} inputRate={inputRate} />
+     </div>
+      
+       <Filter movies={Movies} InputSearch={input} inputRate={inputRate} />
+     
+
+    
+      </div>   
+  
+  
   );
 }
 
